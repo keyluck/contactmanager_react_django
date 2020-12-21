@@ -1,0 +1,9 @@
+node_modules
+
+*.log
+*.pot
+*.pyc
+__psycache__/
+local_setting.py
+db.sqlite3
+media
