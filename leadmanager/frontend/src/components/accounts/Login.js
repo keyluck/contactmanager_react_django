@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+import { createMessage } from "../../actions/messages";
 
 export class Login extends Component {
   state = {
@@ -17,7 +18,12 @@ export class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.login(this.state.username, this.state.password);
+    const { username, password } = this.state;
+    const userInfo = {
+      username,
+      password,
+    };
+    this.props.login(userInfo);
   };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -28,6 +34,7 @@ export class Login extends Component {
     }
 
     const { username, password } = this.state;
+
     return (
       <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
@@ -72,4 +79,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, createMessage })(Login);
