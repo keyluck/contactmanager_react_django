@@ -6,9 +6,9 @@ from .serializers import LeadSerializer
 # Lead Viewset
 # 'permissions.AllowAny -> authentication not require to view all leads' 
 class LeadViewSet(viewsets.ModelViewSet):
-    queryset = Lead.objects.all()
+    
     permission_classes = [
-        permissions.IsAuthenticated
+        permissions.IsAuthenticated,
     ]
 
     serializer_class = LeadSerializer
