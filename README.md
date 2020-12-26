@@ -1,6 +1,8 @@
 # Contact Manager
 > Application for managing contact list
+> 
 > Made with Django, React, and Redux
+> 
 > Token Authentication with Knox
 
 ## Quick Start
