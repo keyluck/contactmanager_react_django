@@ -1,13 +1,19 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getContacts, deleteContact } from "../../actions/contacts";
+
+import {
+  getContacts,
+  deleteContact,
+  editContact,
+} from "../../actions/contacts";
 
 export class Contacts extends Component {
   static propTypes = {
     contacts: PropTypes.array.isRequired,
     getContacts: PropTypes.func.isRequired,
     deleteContact: PropTypes.func.isRequired,
+    editContact: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -18,6 +24,7 @@ export class Contacts extends Component {
     return (
       <Fragment>
         <h2>Contacts</h2>
+
         <table className="table table-striped">
           <thead>
             <tr>
@@ -25,7 +32,9 @@ export class Contacts extends Component {
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
+              <th>Phone Number</th>
               <th>Notes</th>
+              <th />
               <th />
             </tr>
           </thead>
@@ -36,7 +45,9 @@ export class Contacts extends Component {
                 <td>{contact.first_name}</td>
                 <td>{contact.last_name}</td>
                 <td>{contact.email}</td>
+                <td>{contact.phone_number}</td>
                 <td>{contact.notes}</td>
+
                 <td>
                   <button
                     onClick={this.props.deleteContact.bind(this, contact.id)}
@@ -59,6 +70,8 @@ const mapStateToProps = (state) => ({
   contacts: state.contacts.contacts,
 });
 
-export default connect(mapStateToProps, { getContacts, deleteContact })(
-  Contacts
-);
+export default connect(mapStateToProps, {
+  getContacts,
+  deleteContact,
+  editContact,
+})(Contacts);

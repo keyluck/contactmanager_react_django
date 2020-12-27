@@ -8,6 +8,7 @@ export class Form extends Component {
     first_name: "",
     last_name: "",
     email: "",
+    phone_number: "",
     notes: "",
   };
 
@@ -20,18 +21,19 @@ export class Form extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { first_name, last_name, email, notes } = this.state;
-    const contact = { first_name, last_name, email, notes };
+    const { first_name, last_name, email, phone_number, notes } = this.state;
+    const contact = { first_name, last_name, email, phone_number, notes };
     this.props.addContact(contact);
     this.setState({
       first_name: "",
       last_name: "",
       email: "",
+      phone_number: "",
       notes: "",
     });
   };
   render() {
-    const { first_name, last_name, email, notes } = this.state;
+    const { first_name, last_name, email, phone_number, notes } = this.state;
 
     return (
       <div className="card card-body mt-4 mb-4">
@@ -65,6 +67,16 @@ export class Form extends Component {
               name="email"
               onChange={this.onChange}
               value={email}
+            />
+          </div>
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input
+              className="form-control"
+              type="tel"
+              name="phone_number"
+              onChange={this.onChange}
+              value={phone_number}
             />
           </div>
           <div className="form-group">

@@ -5,7 +5,12 @@ import axios from "axios";
 import { createMessage, returnErrors } from "./messages";
 import { tokenConfig } from "./auth";
 
-import { GET_CONTACTS, DELETE_CONTACT, ADD_CONTACT } from "./types";
+import {
+  GET_CONTACTS,
+  DELETE_CONTACT,
+  ADD_CONTACT,
+  EDIT_CONTACT,
+} from "./types";
 
 // GET CONTACTS
 export const getContacts = () => (dispatch, getState) => {
@@ -36,7 +41,7 @@ export const deleteContact = (id) => (dispatch, getState) => {
     .catch((err) => console.log(err));
 };
 
-// ADD CONTACTS
+// ADD CONTACT
 export const addContact = (contact) => (dispatch, getState) => {
   axios
     .post("/api/contacts/", contact, tokenConfig(getState))
@@ -44,6 +49,22 @@ export const addContact = (contact) => (dispatch, getState) => {
       dispatch(createMessage({ addContact: "Contact Added" }));
       dispatch({
         type: ADD_CONTACT,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+// EDIT CONTACT
+export const editContact = (contact) => (dispatch, getState) => {
+  axios
+    .post("/api/contacts/", contact, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ editContact: "Contact Edited" }));
+      dispatch({
+        type: EDIT_CONTACT,
         payload: res.data,
       });
     })

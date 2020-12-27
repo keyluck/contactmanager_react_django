@@ -3,7 +3,7 @@ import {
   GET_CONTACTS,
   DELETE_CONTACT,
   ADD_CONTACT,
-  CLEAR_CONTACTS,
+  EDIT_CONTACT,
 } from "../actions/types.js";
 
 //Fetching contacts from backend and putting them into initial state
@@ -23,18 +23,22 @@ export default function (state = initialState, action) {
       return {
         ...state,
         contacts: state.contacts.filter(
+          //returns array where all ID's != ID from action.payload
           (contact) => contact.id !== action.payload
         ),
+      };
+    case EDIT_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) => {
+          //returns array with updated contact info
+          return contact.id === action.payload.id ? action.payload : contact;
+        }),
       };
     case ADD_CONTACT:
       return {
         ...state,
         contacts: [...state.contacts, action.payload],
-      };
-    case CLEAR_CONTACTS:
-      return {
-        ...state,
-        contacts: [],
       };
     default:
       return state;

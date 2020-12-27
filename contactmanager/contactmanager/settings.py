@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'frontend',
     'knox',
     'accounts',
+    'phonenumber_field',
 ]
 
 REST_FRAMEWORK = {
@@ -128,3 +129,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Phone Number Settings
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'US'

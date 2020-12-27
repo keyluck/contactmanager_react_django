@@ -14,7 +14,7 @@ export class Header extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
         <span className="navbar-text mr-3">
           <strong>{user ? `Welcome ${user.username}` : ""}</strong>
         </span>
@@ -22,23 +22,16 @@ export class Header extends Component {
         <li className="nav-item">
           <button
             onClick={this.props.logout}
-            className="nav-link btn btn-info btn-sm text-light"
+            className="nav-link btn btn-danger btn-sm text-light"
           >
             Logout
           </button>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            {" "}
-            Login
-          </Link>
         </li>
       </ul>
     );
 
     const guestLinks = (
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
         <li className="nav-item">
           <Link to="/register" className="nav-link">
             {" "}
@@ -56,7 +49,7 @@ export class Header extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
