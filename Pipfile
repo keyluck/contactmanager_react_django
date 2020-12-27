@@ -8,6 +8,8 @@ django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
 django-phone-field = "*"
+django-heroku = "*"
+gunicorn = "*"
 
 [dev-packages]
 
