@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'frontend',
     'knox',
     'accounts',
-    'phonenumber_field',
+    'phone_field',
 ]
 
 REST_FRAMEWORK = {
